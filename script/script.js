@@ -1,8 +1,11 @@
 // set NZTM projection extent so OL can determine zoom level 0 extents.
+
+proj4.defs("EPSG:2193","+proj=tmerc +lat_0=0 +lon_0=173 +k=0.9996 +x_0=1600000 +y_0=10000000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs");
+
 var projection = ol.proj.get("EPSG:2193");
 projection.setExtent([827933.23, 3729820.29, 3195373.59, 7039943.58]);
 
-// NZTM tile matrix origin, resolution and matrixId definitions. See the LDS tile set definition document for more information
+// NZTM tile matrix origin, resolution and matrixId definitions.
 var origin = [-1000000, 10000000];
 var resolutions = [
   8960,

@@ -65,7 +65,7 @@ var layer = new ol.layer.Tile({
 var tsunami = new ol.layer.Vector({
   source: new ol.source.Vector({
       format: new ol.format.GeoJSON(),
-      url: 'json/tsunami_nztm.geojson',
+      url: 'https://xycarto.github.io/wellington_tsunami_nztm/json/tsunami_nztm.geojson',
       projection: projection
   }),
   style: new ol.style.Style({

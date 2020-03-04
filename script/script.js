@@ -51,10 +51,38 @@ var layer = new ol.layer.Tile({
   })
 });
 
+//load geojson
+/*var tsunami = new ol.layer.Vector({
+  source: new ol.source.Vector ({
+      url: 'json/tsunami_nztm.geojson',
+      projection: 'projection'
+
+  }),
+  name: 'tsunami_nztm',
+  style: style_white()
+})*/
+
+var tsunami = new ol.layer.Vector({
+  source: new ol.source.Vector({
+      format: new ol.format.GeoJSON(),
+      url: 'json/tsunami_nztm.geojson',
+      projection: projection
+  }),
+  style: new ol.style.Style({
+    stroke: new ol.style.Stroke({
+      color: 'rgba(29, 130, 29, 1)',
+      width: 2
+    }),
+    fill: new ol.style.Fill({
+      color: 'rgba(0, 255, 0, 0.45)'
+    })
+  })
+});
+
 // Add base map and icons to website
 var map = new ol.Map({
   target: "map",
-  layers: [layer],
+  layers: [layer, tsunami],
   view: new ol.View({
     projection: projection,
     center: ol.proj.transform([175.4, -41.29], "EPSG:4326", "EPSG:2193"),

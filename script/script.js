@@ -79,6 +79,11 @@ var layer = new ol.layer.Tile({
     })
   })
 });*/
+function getRGBa(colorCode) {
+  if (colorCode === "yellow") {return 'rgba(255, 255, 0, 0.5)'}
+  else if (colorCode === "red") {return 'rgba(255, 0, 0, 0.5)'}
+  else {return 'rgba(255, 165, 0, 0.5)'}
+}
 
 var tsunami = new ol.layer.Vector({
   source: new ol.source.Vector({
@@ -89,7 +94,13 @@ var tsunami = new ol.layer.Vector({
   style: function (feature, resolution) {
     console.log(feature.getProperties()); // <== all geojson properties
     return [new ol.style.Style({
-      fill: new ol.style.Fill({ color: feature.get('Col_Code') })
+      fill: new ol.style.Fill({ 
+        color: getRGBa(feature.get('Col_Code')),
+      }),
+      stroke: new ol.style.Stroke({
+        color: feature.get('Col_Code'),
+        width: 1
+      })
     })];
   }
 });

@@ -62,7 +62,8 @@ var layer = new ol.layer.Tile({
   style: style_white()
 })*/
 
-var tsunami = new ol.layer.Vector({
+
+/*var tsunami = new ol.layer.Vector({
   source: new ol.source.Vector({
       format: new ol.format.GeoJSON(),
       url: 'https://xycarto.github.io/wellington_tsunami_nztm/json/tsunami_nztm.geojson',
@@ -77,6 +78,20 @@ var tsunami = new ol.layer.Vector({
       color: 'rgba(0, 255, 0, 0.45)'
     })
   })
+});*/
+
+var tsunami = new ol.layer.Vector({
+  source: new ol.source.Vector({
+      format: new ol.format.GeoJSON(),
+      url: 'https://xycarto.github.io/wellington_tsunami_nztm/json/tsunami_nztm.geojson',
+      projection: projection
+  }),
+  style: function (feature, resolution) {
+    console.log(feature.getProperties()); // <== all geojson properties
+    return [new ol.style.Style({
+      fill: new ol.style.Fill({ color: feature.get('Col_Code') })
+    })];
+  }
 });
 
 // Add base map and icons to website

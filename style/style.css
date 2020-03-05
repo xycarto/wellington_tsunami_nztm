@@ -1,54 +1,179 @@
-h1 { 
-  font-family: Helvetica Neue, Helvetica, Arial, sans-serif; 
-  font-size: 24px; 
-  font-style: normal; 
-  font-variant: normal; 
-  font-weight: 700; 
-  line-height: 26.4px; 
-}
-
-h3 { 
-  font-family: Helvetica Neue, Helvetica, Arial, sans-serif; 
-  font-size: 14px; 
-  font-style: normal; 
-  font-variant: normal; 
-  font-weight: 700; 
-  line-height: 15.4px; 
-} 
-
-p { 
-  font-family: Helvetica Neue, Helvetica, Arial, sans-serif; 
-  font-size: 14px; 
-  font-style: normal; 
-  font-variant: normal; 
-  font-weight: 400; 
-  line-height: 20px; 
-} 
-blockquote { 
-  font-family: Helvetica Neue, Helvetica, Arial, sans-serif; 
-  font-size: 21px; 
-  font-style: normal; 
-  font-variant: normal; 
-  font-weight: 400; 
-  line-height: 30px; 
-  } 
-
-  pre { 
-    font-family: Helvetica Neue, Helvetica, Arial, sans-serif; 
-    font-size: 13px; 
-    font-style: normal; 
-    font-variant: normal; 
-    font-weight: 400; 
-    line-height: 18.5667px; 
-  }
-
-
-html, body {
-    height:100%;
-    padding:0;
-    margin:0;
+		
+a {
+  color: #919A9E;
+  text-decoration: none;
   }
   
-  #map {
-    height: 100%;
+a:hover {
+  text-decoration: none;
+  color:#48565D;
   }
+
+a:focus{
+    outline: none;
+  }
+  
+h4{
+      line-height: 28px;
+      margin-top: 0;
+  }
+  
+hr {
+      border-top: 1px solid #333;
+      margin: 0 0 10px;
+  }
+
+
+#html, body { margin:0; padding:0; 
+  font-family: 'Open Sans', sans-serif;;
+  font-size:18px;
+  overflow:hidden;
+  background:#546f77;
+}
+
+/* MAP */
+.map{
+  background:#546f77;
+  position:absolute; 
+  top:50px; 
+  bottom:50px;
+  left:0; 
+  right:0; 
+}
+
+.standalone .map{
+bottom:0;
+}
+
+/* Info Panel */
+.information {
+  margin: 0 auto;
+  overflow: auto;
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 50px;
+  left: 0;   
+  width: 100%;
+  z-index: 5000;	
+  background-color: rgba(0,0,0,0.1);
+}
+
+.standalone .information {
+bottom: 0;
+height:100%;
+}
+
+.information-box {
+  background: none repeat scroll 0 0 white;   
+  height: 40%;
+  margin: 0;
+  overflow-y: auto;
+  padding: 20px;
+  position: absolute;
+  bottom: 0;
+  right:0;
+  left:0;    
+  top:auto;
+  -webkit-box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+}
+
+.btn-close {
+font-size: 28px;
+font-weight: bold;
+line-height: 28px;
+}	
+
+/* HEADER & FOOTER*/
+.navbar {
+  height: 40px;
+  -webkit-box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+  background:#fefefe;
+}
+
+.navbar-header{
+  float:none;
+  line-height:18px;
+  font-size:18px;
+}
+
+.navbar-fixed-top, 
+.navbar-fixed-bottom {
+  z-index:4999;
+}
+.navbar-fixed-bottom {
+  position: absolute;
+  border: 0 none;
+  z-index: 5001;
+}
+.navbar-brand {
+  font-family: 'Open Sans', sans-serif;
+  padding:10px;
+  padding-top: 10px;
+}
+
+a.navbar-brand.home{  
+  color:#333;
+}
+
+.sep{
+  padding: 15px 0px;
+}
+a.strong {
+    font-weight: bold;
+}
+
+/* FULLSCREEN */
+.fullscreen .hidden-fullscreen,
+.standalone .hidden-fullscreen,
+.standalone .hidden-standalone,
+.visible-fullscreen {
+  display: none !important;
+}
+
+.fullscreen .visible-fullscreen {
+  display: block !important;
+}
+
+.shadow-wrap {
+    bottom: 0;
+    -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.3) inset;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.3) inset;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 6000;
+}
+
+/* SPRITE */
+/*[class^="icon-"], [class*=" icon-"] {
+  display: inline-block;
+  background: url('../img/sprite.png') no-repeat top left;
+  width: 50px;
+  height: 50px;
+  vertical-align: middle;
+}
+
+.icon-fullscreen {background-position: 0 0;}
+.icon-fullscreen-close{background-position: 0 -50px;}
+a:hover .icon-fullscreen {background-position: -50px 0;}
+a:hover .icon-fullscreen-close {background-position: -50px -50px;}*/ 
+
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
+    only screen and (-o-min-device-pixel-ratio: 3/2),
+    only screen and (min--moz-device-pixel-ratio: 1.5),
+    only screen and (min-device-pixel-ratio: 1.5) {
+
+  [class^="icon-"], [class*=" icon-"] {
+    background-image: url('../img/sprite@2.png');
+    background-size: 100px 100px;
+  }
+}
+
+@media (min-width: 600px){
+  .information-box {
+    margin: 20px 10px;
+

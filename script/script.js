@@ -70,7 +70,7 @@ var tsunami = new ol.layer.Vector({
       }),
       stroke: new ol.style.Stroke({
         color: feature.get('Col_Code'),
-        width: 1
+        width: 0.5
       })
     })];
   }
@@ -86,3 +86,5 @@ var map = new ol.Map({
     zoom: 9
   })
 });
+
+

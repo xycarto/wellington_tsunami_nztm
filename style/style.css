@@ -1,4 +1,4 @@
-		
+
 a {
   color: #919A9E;
   text-decoration: none;
@@ -29,6 +29,22 @@ hr {
   font-size:18px;
   overflow:hidden;
   background:#546f77;
+}
+
+.sqr {
+	width: 12px;
+	height: 12px;
+	border-radius: 5px;
+	display: inline-block;
+}
+.red{
+	background:red;
+}
+.orange{
+	background:orange;
+}
+.yellow{
+	background:yellow;
 }
 
 /* MAP */
@@ -110,8 +126,6 @@ line-height: 28px;
 }
 .navbar-brand {
   font-family: 'Open Sans', sans-serif;
-  padding:10px;
-  padding-top: 10px;
 }
 
 a.navbar-brand.home{  
@@ -149,7 +163,7 @@ a.strong {
 }
 
 /* SPRITE */
-/*[class^="icon-"], [class*=" icon-"] {
+[class^="icon-"], [class*=" icon-"] {
   display: inline-block;
   background: url('../img/sprite.png') no-repeat top left;
   width: 50px;
@@ -160,7 +174,7 @@ a.strong {
 .icon-fullscreen {background-position: 0 0;}
 .icon-fullscreen-close{background-position: 0 -50px;}
 a:hover .icon-fullscreen {background-position: -50px 0;}
-a:hover .icon-fullscreen-close {background-position: -50px -50px;}*/ 
+a:hover .icon-fullscreen-close {background-position: -50px -50px;}
 
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5),
     only screen and (-o-min-device-pixel-ratio: 3/2),
@@ -176,4 +190,4 @@ a:hover .icon-fullscreen-close {background-position: -50px -50px;}*/
 @media (min-width: 600px){
   .information-box {
     margin: 20px 10px;
-
+    

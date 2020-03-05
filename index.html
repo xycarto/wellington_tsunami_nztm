@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="//openlayers.org/en/v4.6.5/css/ol.css" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap" rel="stylesheet"> 
     <script src="//openlayers.org/en/v4.6.5/build/ol.js" type="text/javascript"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/proj4js/2.3.15/proj4.js"></script>
     <link rel="stylesheet" href="//openlayers.org/en/v4.6.5/css/ol.css" type="text/css">
     <link rel="stylesheet" href="style/style.css" type="text/css">
@@ -15,6 +16,25 @@
     <script src="//openlayers.org/en/v4.6.5/build/ol.js" type="text/javascript"></script>
     <link rel="stylesheet" href="//openlayers.org/en/v3.14.0/css/ol.css" type="text/css"/>
     <script src="//code.jquery.com/jquery-1.11.2.min.js" type="text/javascript"></script>
+    <script>
+        window.addEventListener("load", function(){
+        window.cookieconsent.initialise({
+          "palette": {
+            "popup": {
+              "background": "#ffffff",
+              "text": "#48565D"
+            },
+            "button": {
+              "background": "#48565D",
+              "text": "#ffffff"
+            }
+          },
+          "theme": "edgeless",
+          "content": {
+            "href": "http://xycarto.com"
+          }
+        })});
+          </script>	
   </head>
 
   <body class='standalone'>
@@ -29,6 +49,31 @@
 
     <div id="map">
       <script src="script/script.js" type="text/javascript"></script>
+
+      <div class="information">
+          <div class="information-box">
+            <a href="#" class="btn-close toggle-info pull-right">&#10005;</a>
+            <h4>Wellington Region Tsunmai<span class="hidden-xs"> Evacuation Zones </span></h4>
+            <hr>
+              <p>This map is the sole creation of XYCarto using publically available data from LINZ, Wellington Regional Council,
+              Koordinates, and Wellington City Council. The map is for demonstration purposes only.</p>
+              <p><div class="sqr red"></div> <strong>Red Zone:</strong> the beach and marine environment, and some very low lying areas. This zone is where people are asked to stay out of most often as a result of smaller tsunamis</p>
+              <p><div class="sqr orange"></div> <strong>Orange Zone</strong> (including the red zone): the area where people may be asked to evacuate for a large earthquake in the Pacific, such as near South America, causing a tsunami wave of up to 5 metres at the Wellington coastline. Alerts and evacuation advice would be issued by Civil Defence and distributed to the public for this type of tsunami because we have more time.</p>
+              <p><div class="sqr yellow"></div> <strong>Yellow Zone</strong> (including the orange and red zones): the area that you must evacuate from if you feel a long or strong earthquake. The earthquake may be the only warning of a tsunami, so do not wait for further instructions, notifications or advice, evacuate immediately after the shaking has stopped. This zone has been defined by modelling up to magnitude 9 earthquakes on the subduction zone to the east of the North Island, the worst-case scenario modelled for the Wellington Region..</p>
+              
+            <a href="#" class="toggle-info"><strong>Explore</strong></a>
+          </div>
+        </div>
+        
+        <footer id="bottom" class="navbar navbar-fixed-bottom hidden-standalone">
+          <div class="hidden-fullscreen btn-fullscreen  pull-right">
+            <a href="#" target="_blank" title="View in fullscreen" data-toggle="fullscreen"><span class="icon-fullscreen"></span></a>
+          </div>
+          <div class="visible-fullscreen btn-fullscreen pull-right">
+            <a href="#" title="Exit Fullscreen" data-toggle="fullscreen-close"><span class="icon-fullscreen-close"></span></a>
+          </div>
+        </footer>
+
     </div>   
   </body>
 </html>

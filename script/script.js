@@ -111,7 +111,7 @@ var map = new ol.Map({
   layers: [layer, tsunami],
   view: new ol.View({
     projection: projection,
-    center: ol.proj.transform([175.4, -41.29], "EPSG:4326", "EPSG:2193"),
+    center: ol.proj.transform([174.8, -41.29], "EPSG:4326", "EPSG:2193"),
     zoom: 9
   })
 });

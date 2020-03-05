@@ -29,6 +29,9 @@ hr {
   font-size:18px;
   overflow:hidden;
   background:#546f77;
+  height: 100%;
+  padding:0;
+  margin:0;
 }
 
 .sqr {
@@ -99,7 +102,7 @@ line-height: 28px;
 
 /* HEADER & FOOTER*/
 .navbar {
-  height: 40px;
+  height: 50px;
   -webkit-box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
   box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
   background:#fefefe;
@@ -166,7 +169,6 @@ a.strong {
   height: 50px;
   vertical-align: middle;
 }
-
 .icon-fullscreen {background-position: 0 0;}
 .icon-fullscreen-close{background-position: 0 -50px;}
 a:hover .icon-fullscreen {background-position: -50px 0;}
@@ -186,4 +188,24 @@ a:hover .icon-fullscreen-close {background-position: -50px -50px;}
 @media (min-width: 600px){
   .information-box {
     margin: 20px 10px;
-    
+  }
+ .legend-container {
+    top: 145px;
+    right: 20px;
+    left:auto;
+  } 
+}
+
+@media (min-width: 1024px){
+  .information-box {
+    max-width:1024px;
+    width:80%;
+    margin: 0 auto;
+    height: auto;
+    position: relative;
+    top: 40%;
+  }  
+  .information{
+    height:100%;
+  }
+}

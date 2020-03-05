@@ -172,9 +172,9 @@ $(function(){
     }
   } 
 
-  /*$(window).on('resize', function () {
+  $(window).on('resize', function () {
     setMinZoom();
     updateMapView();
-  });*/
+  });
   
 })

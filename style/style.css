@@ -53,11 +53,49 @@ hr {
 .map{
   background:#546f77;
   position:absolute; 
-  height: 100%; 
+  position:absolute; 
+  top:50px; 
+  bottom:50px;
+  left:0; 
+  right:0; 
 }
-
 .standalone .map{
 bottom:0;
+}
+
+
+/* map-controls */
+.menu-ui {
+  background:#fff;
+  position:absolute;
+  top:60px;right:10px;
+  z-index:1;
+  width:120px;
+  }
+.menu-ui a {
+  font-size:13px;
+  color:#404040;
+  display:block;
+  margin: 0 0 1px;
+  padding:10px;
+  text-decoration:none;
+  text-align:center;
+}
+.menu-ui a:first-child {
+}
+.menu-ui a:last-child {
+  border:none;
+}
+.menu-ui a:hover {
+  background:#919A9E;
+  color:#FFF;;
+}
+.menu-ui a.active {
+  background:#48565D;
+  color:#FFF;  
+}
+.menu-ui a.active:hover {
+  cursor:default;
 }
 
 /* Info Panel */

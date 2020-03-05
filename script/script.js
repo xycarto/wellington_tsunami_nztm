@@ -37,7 +37,7 @@ var layer = new ol.layer.Tile({
     requestEncoding: "REST",
     attributions: [
       new ol.Attribution({
-        html: ['<a href="http://data.linz.govt.nz">LINZ. CC BY 4.0</a>']
+        html: ['<a href="http://xycarto.com">XYCarto 2020</a>']
       })
     ],
     projection: projection,

@@ -51,34 +51,7 @@ var layer = new ol.layer.Tile({
   })
 });
 
-//load geojson
-/*var tsunami = new ol.layer.Vector({
-  source: new ol.source.Vector ({
-      url: 'json/tsunami_nztm.geojson',
-      projection: 'projection'
-
-  }),
-  name: 'tsunami_nztm',
-  style: style_white()
-})*/
-
-
-/*var tsunami = new ol.layer.Vector({
-  source: new ol.source.Vector({
-      format: new ol.format.GeoJSON(),
-      url: 'https://xycarto.github.io/wellington_tsunami_nztm/json/tsunami_nztm.geojson',
-      projection: projection
-  }),
-  style: new ol.style.Style({
-    stroke: new ol.style.Stroke({
-      color: 'rgba(29, 130, 29, 1)',
-      width: 2
-    }),
-    fill: new ol.style.Fill({
-      color: 'rgba(0, 255, 0, 0.45)'
-    })
-  })
-});*/
+//transform color in json to rgba
 function getRGBa(colorCode) {
   if (colorCode === "yellow") {return 'rgba(255, 255, 0, 0.5)'}
   else if (colorCode === "red") {return 'rgba(255, 0, 0, 0.5)'}

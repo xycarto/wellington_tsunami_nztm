@@ -50,10 +50,7 @@ hr {
 .map{
   background:#546f77;
   position:absolute; 
-  top:50px; 
-  bottom:50px;
-  left:0; 
-  right:0; 
+  height: 100%; 
 }
 
 .standalone .map{

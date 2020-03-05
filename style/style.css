@@ -200,13 +200,6 @@ a.strong {
 }
 
 /* SPRITE */
-[class^="icon-"], [class*=" icon-"] {
-  display: inline-block;
-  background: url('../img/sprite.png') no-repeat top left;
-  width: 50px;
-  height: 50px;
-  vertical-align: middle;
-}
 .icon-fullscreen {background-position: 0 0;}
 .icon-fullscreen-close{background-position: 0 -50px;}
 a:hover .icon-fullscreen {background-position: -50px 0;}
@@ -214,18 +207,12 @@ a:hover .icon-fullscreen-close {background-position: -50px -50px;}
 
 @media only screen and (-webkit-min-device-pixel-ratio: 1.5),
     only screen and (-o-min-device-pixel-ratio: 3/2),
-    only screen and (min--moz-device-pixel-ratio: 1.5),
-    only screen and (min-device-pixel-ratio: 1.5) {
-
-  [class^="icon-"], [class*=" icon-"] {
-    background-image: url('../img/sprite@2.png');
-    background-size: 100px 100px;
-  }
+    only screen and (min--moz-device-pixel-ratio: 1.5)
 }
 
 @media (min-width: 600px){
   .information-box {
-    margin: 20px 10px;
+    margin: 10px 10px;
   }
  .legend-container {
     top: 145px;

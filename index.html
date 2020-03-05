@@ -16,25 +16,6 @@
     <script src="//openlayers.org/en/v4.6.5/build/ol.js" type="text/javascript"></script>
     <link rel="stylesheet" href="//openlayers.org/en/v3.14.0/css/ol.css" type="text/css"/>
     <script src="//code.jquery.com/jquery-1.11.2.min.js" type="text/javascript"></script>
-    <script>
-        window.addEventListener("load", function(){
-        window.cookieconsent.initialise({
-          "palette": {
-            "popup": {
-              "background": "#ffffff",
-              "text": "#48565D"
-            },
-            "button": {
-              "background": "#48565D",
-              "text": "#ffffff"
-            }
-          },
-          "theme": "edgeless",
-          "content": {
-            "href": "http://xycarto.com"
-          }
-        })});
-          </script>	
   </head>
 
   <body class='standalone'>
@@ -47,8 +28,9 @@
         </div>
       </header>
 
-    <div id="map">
-      <script src="script/script.js" type="text/javascript"></script>
+      <div id="map" class="map">
+        <script src="script/script.js" type="text/javascript"></script>
+      </div>
 
       <div class="information">
           <div class="information-box">

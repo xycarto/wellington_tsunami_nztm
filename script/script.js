@@ -1,6 +1,8 @@
 $(function(){
 
-  initFullscreen();
+  //map;
+
+  //initFullscreen();
   
   //initMap();
 
@@ -111,7 +113,8 @@ $(function(){
   });
 
   // Add base map and icons to website
-  var map = new ol.Map({
+/*function initMap() {
+    map = new ol.Map({
     target: "map",
     layers: [layer, tsunami],
     view: new ol.View({
@@ -119,7 +122,18 @@ $(function(){
       center: ol.proj.transform([174.8, -41.29], "EPSG:4326", "EPSG:2193"),
       zoom: 9
     })
-  });
+  })
+};*/
+
+var map = new ol.Map({
+  target: "map",
+  layers: [layer, tsunami],
+  view: new ol.View({
+    projection: projection,
+    center: ol.proj.transform([174.8, -41.29], "EPSG:4326", "EPSG:2193"),
+    zoom: 9
+  })
+});
 
   /* FULLSCREEN   ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
   function initFullscreen() {

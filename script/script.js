@@ -85,6 +85,40 @@ $(function(){
     })
   });
 
+  /*var tsunami_topo = new ol.layer.Vector({
+    source: new ol.source.Vector({
+      url: 'https://xycarto.github.io/wellington_tsunami_nztm/json/tsunami_nztm.json',
+      format: new ol.format.TopoJSON({
+        layers: ['geometries']
+      }),
+      overlaps: false,
+      style: tsu_style
+    })
+  });*/
+
+  /*var tsu_style = new ol.style.Style({
+    fill: new ol.style.Fill({
+      color: 'rgba(0,0,0,0)'
+    }),
+    stroke: new ol.style.Stroke({
+      color: 'rgba(255,0,0,1)',
+      width: 1
+    })
+  });
+
+  var tsunami = new ol.layer.Vector({
+    source: new ol.source.Vector({
+      url: '~/xycarto-base-maps-data/wellington-region-nztm-aerialdsm/kx-wellington-region-tsunami-evacuation-zones-SHP/tsunami_nztm_topo.json',
+      format: new ol.format.TopoJSON({
+        layers: ['tsunami_nztm'],
+        dataProjection: projection
+      }),
+      projection: projection
+    }),
+    style: tsu_style
+  });*/
+  
+
   //transform color in json to rgba
   function getRGBa(colorCode) {
     if (colorCode === "yellow") {return 'rgba(255, 255, 0, 0.5)'}
@@ -92,13 +126,38 @@ $(function(){
     else {return 'rgba(255, 165, 0, 0.5)'}
   }
 
+  /*var textStyle =  new ol.style.Text({
+    font: '12px Calibri,sans-serif',
+    fill: new ol.style.Fill({
+      color: '#000'
+    }),
+    label: '${Location}'
+  })*/
+
+  var getText = function(feature) {
+    var text = feature.get('Col_Code');
+    return text;
+};
+
+  var createTextStyle = function(feature) {
+    return new ol.style.Text({
+      textAlign: 'center',
+      textBaseline: 'middle',
+      font: '14px Verdana',
+      text: getText(feature),
+      fill: new ol.style.Fill({color: 'black'}),
+      stroke: new ol.style.Stroke({color: 'white', width: 0.5})
+    });
+  };
+
+  //build json layer
   var tsunami = new ol.layer.Vector({
     source: new ol.source.Vector({
         format: new ol.format.GeoJSON(),
         url: 'https://xycarto.github.io/wellington_tsunami_nztm/json/tsunami_nztm.geojson',
         projection: projection
     }),
-    style: function (feature, resolution) {
+    style: function (feature) {
       console.log(feature.getProperties()); // <== all geojson properties
       return [new ol.style.Style({
         fill: new ol.style.Fill({ 
@@ -107,23 +166,11 @@ $(function(){
         stroke: new ol.style.Stroke({
           color: feature.get('Col_Code'),
           width: 0.5
-        })
+        }),
+        text: createTextStyle(feature)
       })];
     }
   });
-
-  // Add base map and icons to website
-/*function initMap() {
-    map = new ol.Map({
-    target: "map",
-    layers: [layer, tsunami],
-    view: new ol.View({
-      projection: projection,
-      center: ol.proj.transform([174.8, -41.29], "EPSG:4326", "EPSG:2193"),
-      zoom: 9
-    })
-  })
-};*/
 
 var map = new ol.Map({
   target: "map",

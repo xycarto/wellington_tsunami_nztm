@@ -144,7 +144,7 @@ $(function(){
     return new ol.style.Text({
       textAlign: 'center',
       textBaseline: 'middle',
-      font: 'bold 13px sans-serif',
+      font: 'bold 15px sans-serif',
       overflow: true,
       text: getText(feature),
       fill: new ol.style.Fill({color: 'rgba(250,250,250,1.0'}),

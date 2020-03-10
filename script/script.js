@@ -85,6 +85,40 @@ $(function(){
     })
   });
 
+  /*var tsunami_topo = new ol.layer.Vector({
+    source: new ol.source.Vector({
+      url: 'https://xycarto.github.io/wellington_tsunami_nztm/json/tsunami_nztm.json',
+      format: new ol.format.TopoJSON({
+        layers: ['geometries']
+      }),
+      overlaps: false,
+      style: tsu_style
+    })
+  });*/
+
+  /*var tsu_style = new ol.style.Style({
+    fill: new ol.style.Fill({
+      color: 'rgba(0,0,0,0)'
+    }),
+    stroke: new ol.style.Stroke({
+      color: 'rgba(255,0,0,1)',
+      width: 1
+    })
+  });
+
+  var tsunami = new ol.layer.Vector({
+    source: new ol.source.Vector({
+      url: '~/xycarto-base-maps-data/wellington-region-nztm-aerialdsm/kx-wellington-region-tsunami-evacuation-zones-SHP/tsunami_nztm_topo.json',
+      format: new ol.format.TopoJSON({
+        layers: ['tsunami_nztm'],
+        dataProjection: projection
+      }),
+      projection: projection
+    }),
+    style: tsu_style
+  });*/
+  
+
   //transform color in json to rgba
   function getRGBa(colorCode) {
     if (colorCode === "yellow") {return 'rgba(255, 255, 0, 0.5)'}
@@ -92,14 +126,40 @@ $(function(){
     else {return 'rgba(255, 165, 0, 0.5)'}
   }
 
+  /*var textStyle =  new ol.style.Text({
+    font: '12px Calibri,sans-serif',
+    fill: new ol.style.Fill({
+      color: '#000'
+    }),
+    label: '${Location}'
+  })*/
+
+  var getText = function(feature) {
+    var text = feature.get('suburb');
+    return text;
+};
+
+  var createTextStyle = function(feature) {
+    return new ol.style.Text({
+      textAlign: 'center',
+      textBaseline: 'middle',
+      font: 'bold 13px sans-serif',
+      overflow: true,
+      text: getText(feature),
+      fill: new ol.style.Fill({color: 'rgba(250,250,250,1.0'}),
+      stroke: new ol.style.Stroke({color: 'rgba(20,20,20,0.75)', width: 1.0})
+    });
+  };
+
+  //build json layers
   var tsunami = new ol.layer.Vector({
     source: new ol.source.Vector({
         format: new ol.format.GeoJSON(),
         url: 'https://xycarto.github.io/wellington_tsunami_nztm/json/tsunami_nztm.geojson',
         projection: projection
     }),
-    style: function (feature, resolution) {
-      console.log(feature.getProperties()); // <== all geojson properties
+    style: function (feature) {
+      //console.log(feature.getProperties()); // <== all geojson properties
       return [new ol.style.Style({
         fill: new ol.style.Fill({ 
           color: getRGBa(feature.get('Col_Code')),
@@ -112,31 +172,53 @@ $(function(){
     }
   });
 
-  // Add base map and icons to website
-/*function initMap() {
-    map = new ol.Map({
+  var suburb = new ol.layer.Vector({
+    source: new ol.source.Vector({
+        format: new ol.format.GeoJSON(),
+        url: 'https://xycarto.github.io/wellington_tsunami_nztm/json/suburb_boundaries.geojson',
+        projection: projection
+    }),
+    style: function (feature) {
+      //console.log(feature.getProperties()); // <== all geojson properties
+      return [new ol.style.Style({
+        stroke: new ol.style.Stroke({
+          color: 'rgba(250, 250, 250, 0.75)',
+          width: 1.25
+        }),
+        text: createTextStyle(feature),
+      })];
+    },
+    declutter: true,
+    maxResolution: 14
+  });
+
+  //build map
+  var map = new ol.Map({
     target: "map",
-    layers: [layer, tsunami],
+    layers: [layer, tsunami, suburb],
     view: new ol.View({
       projection: projection,
       center: ol.proj.transform([174.8, -41.29], "EPSG:4326", "EPSG:2193"),
-      zoom: 9
+      minZoom: 6,
+      maxZoom: 12,
+      zoom: 9,
+      resolutions: resolutions
     })
-  })
-};*/
+  });
 
-var map = new ol.Map({
-  target: "map",
-  layers: [layer, tsunami],
-  view: new ol.View({
-    projection: projection,
-    center: ol.proj.transform([174.8, -41.29], "EPSG:4326", "EPSG:2193"),
-    minZoom: 6,
-    maxZoom: 12,
-    zoom: 9
-  })
-});
-
+  //test for resolution usage
+  var currReso = map.getView().getResolution();
+  map.on('moveend', function(e) {
+    var newReso = map.getView().getResolution();
+    if (currReso != newReso) {
+      console.log('zoom end, new zoom: ' + newReso);
+      currReso = newReso;
+    }
+  });
+  
+    //var resolution = map.getView().getResolution();
+    //console.log(resolution);
+  
   /* FULLSCREEN   ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
   function initFullscreen() {
     // if embedded offer fullscreen

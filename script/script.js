@@ -135,7 +135,7 @@ $(function(){
   })*/
 
   var getText = function(feature) {
-    var text = feature.get('Col_Code');
+    var text = feature.get('suburb');
     return text;
 };
 
@@ -143,14 +143,15 @@ $(function(){
     return new ol.style.Text({
       textAlign: 'center',
       textBaseline: 'middle',
-      font: '14px Verdana',
+      font: 'bold 13px sans-serif',
+      overflow: true,
       text: getText(feature),
-      fill: new ol.style.Fill({color: 'black'}),
-      stroke: new ol.style.Stroke({color: 'white', width: 0.5})
+      fill: new ol.style.Fill({color: 'rgba(250,250,250,1.0'}),
+      stroke: new ol.style.Stroke({color: 'rgba(20,20,20,0.75)', width: 1.0})
     });
   };
 
-  //build json layer
+  //build json layers
   var tsunami = new ol.layer.Vector({
     source: new ol.source.Vector({
         format: new ol.format.GeoJSON(),
@@ -158,7 +159,7 @@ $(function(){
         projection: projection
     }),
     style: function (feature) {
-      console.log(feature.getProperties()); // <== all geojson properties
+      //console.log(feature.getProperties()); // <== all geojson properties
       return [new ol.style.Style({
         fill: new ol.style.Fill({ 
           color: getRGBa(feature.get('Col_Code')),
@@ -166,24 +167,58 @@ $(function(){
         stroke: new ol.style.Stroke({
           color: feature.get('Col_Code'),
           width: 0.5
-        }),
-        text: createTextStyle(feature)
+        })
       })];
     }
   });
 
-var map = new ol.Map({
-  target: "map",
-  layers: [layer, tsunami],
-  view: new ol.View({
-    projection: projection,
-    center: ol.proj.transform([174.8, -41.29], "EPSG:4326", "EPSG:2193"),
-    minZoom: 6,
-    maxZoom: 12,
-    zoom: 9
-  })
-});
+  var suburb = new ol.layer.Vector({
+    source: new ol.source.Vector({
+        format: new ol.format.GeoJSON(),
+        url: 'https://xycarto.github.io/wellington_tsunami_nztm/json/suburb_boundaries.geojson',
+        projection: projection
+    }),
+    style: function (feature) {
+      //console.log(feature.getProperties()); // <== all geojson properties
+      return [new ol.style.Style({
+        stroke: new ol.style.Stroke({
+          color: 'rgba(250, 250, 250, 0.75)',
+          width: 1.25
+        }),
+        text: createTextStyle(feature),
+      })];
+    },
+    declutter: true,
+    maxResolution: 14
+  });
 
+  //build map
+  var map = new ol.Map({
+    target: "map",
+    layers: [layer, tsunami, suburb],
+    view: new ol.View({
+      projection: projection,
+      center: ol.proj.transform([174.8, -41.29], "EPSG:4326", "EPSG:2193"),
+      minZoom: 6,
+      maxZoom: 12,
+      zoom: 9,
+      resolutions: resolutions
+    })
+  });
+
+  //test for resolution usage
+  var currReso = map.getView().getResolution();
+  map.on('moveend', function(e) {
+    var newReso = map.getView().getResolution();
+    if (currReso != newReso) {
+      console.log('zoom end, new zoom: ' + newReso);
+      currReso = newReso;
+    }
+  });
+  
+    //var resolution = map.getView().getResolution();
+    //console.log(resolution);
+  
   /* FULLSCREEN   ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
   function initFullscreen() {
     // if embedded offer fullscreen

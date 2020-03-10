@@ -7,11 +7,6 @@ $(function(){
   //initMap();
 
   initInfo();
-  
-  $('.reset-map').on('click', function(e){
-    e.preventDefault();
-    resetMapView();
-  });
 
   function initInfo(){ 
     $('.toggle-info').on('click',function(e){
@@ -33,6 +28,10 @@ $(function(){
     });
   }
 
+  //toggle suburb view 
+  document.getElementById("menu-ui").onclick = function() { 
+    suburb.setVisible(!suburb.getVisible());
+  };  
 
   // set NZTM projection extent so OL can determine zoom level 0 extents.
   proj4.defs("EPSG:2193","+proj=tmerc +lat_0=0 +lon_0=173 +k=0.9996 +x_0=1600000 +y_0=10000000 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs");
@@ -96,7 +95,7 @@ $(function(){
     })
   });*/
 
-  /*var tsu_style = new ol.style.Style({
+  var tsu_style = new ol.style.Style({
     fill: new ol.style.Fill({
       color: 'rgba(0,0,0,0)'
     }),
@@ -116,7 +115,7 @@ $(function(){
       projection: projection
     }),
     style: tsu_style
-  });*/
+  });
   
 
   //transform color in json to rgba
@@ -125,6 +124,8 @@ $(function(){
     else if (colorCode === "red") {return 'rgba(255, 0, 0, 0.5)'}
     else {return 'rgba(255, 165, 0, 0.5)'}
   }
+
+
 
   /*var textStyle =  new ol.style.Text({
     font: '12px Calibri,sans-serif',
@@ -173,6 +174,7 @@ $(function(){
   });
 
   var suburb = new ol.layer.Vector({
+    visible: false,
     source: new ol.source.Vector({
         format: new ol.format.GeoJSON(),
         url: 'https://xycarto.github.io/wellington_tsunami_nztm/json/suburb_boundaries.geojson',
